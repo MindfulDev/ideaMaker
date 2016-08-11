@@ -6,5 +6,11 @@ var url = 'mongodb://' + pws.mongodbUser + ':'+ pws.mongodbPw +'@ds153745.mlab.c
 var connect = MongoClient.connect(url);
 
 module.exports = {
-    connect
+    connect,
+    close :  function(cb) {
+        connect.then(db => {
+            db.close();
+            cb();
+        })
+    }
 };

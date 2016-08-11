@@ -14,8 +14,8 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 
 /* add route modules here */
-var apiRouter = require("./routes/api");
-app.use("/api", apiRouter);
+
+app.use("/api", require("./routes/api"));
 
 /* basic route */
 app.get('/', (q,r) => {
@@ -24,4 +24,12 @@ app.get('/', (q,r) => {
 
 app.listen(3000, () => {
     console.log('Listening on 3000');
+});
+
+process.on('SIGINT', function() {
+   console.log("SIGINT");
+    require('./data/ideaDb').close( () => {
+        process.exit(0);
+    });
+
 });

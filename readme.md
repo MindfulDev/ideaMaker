@@ -22,4 +22,5 @@ This is a nodejs project to manipulate ideas.
   * 0.1.0
   * added Mongodb connection - currently using nodejs native driver
   * created beginning api router get request on \api\ideas produces json list
+  * added a graceful close of mongodb
   
