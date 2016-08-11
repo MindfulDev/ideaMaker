@@ -1,5 +1,10 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+
+/* configure express to use bodyparser to get data by POST */
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 /* Add bootstrap resource to outer web */
 app.use(express.static('node_modules/bootstrap/dist'));
@@ -9,6 +14,8 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 
 /* add route modules here */
+var apiRouter = require("./routes/api");
+app.use("/api", apiRouter);
 
 /* basic route */
 app.get('/', (q,r) => {
