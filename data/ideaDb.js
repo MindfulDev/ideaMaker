@@ -1,16 +1,20 @@
 var MongoClient = require("mongodb").MongoClient;
-var ObjectID = require("mongodb").ObjectID;
+var mongoose = require('mongoose');
 var pws = require('../pws.json');
 
-var url = 'mongodb://' + pws.mongodbUser + ':'+ pws.mongodbPw +'@ds153745.mlab.com:53745/thebrain';
-var connect = MongoClient.connect(url);
+var url = 'mongodb://' + pws.mongodbUser + ':'+ pws.mongodbPw +'@' + pws.mongodbUrl;
+// var connect = MongoClient.connect(url);
+
+/* change mongoose promise to a true promise implementation */
+mongoose.Promise = global.Promise;
+mongoose.connect(url);
+
+var Idea = require('../models/ideaModel.js');
 
 module.exports = {
-    connect,
-    close :  function(cb) {
-        connect.then(db => {
-            db.close();
-            cb();
-        })
-    }
-};
+
+    Idea,
+    close :  function() {
+        mongoose.disconnect();
+        }
+    };

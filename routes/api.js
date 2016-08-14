@@ -8,8 +8,7 @@ router.route("/ideas")
 
     .get(function (req, res, next) {
     
-        ideaDb.connect
-            .then(db => db.collection("ideas").find().toArray())
+        ideaDb.Idea.find().exec()
             .then(rooms => res.json(rooms))
             .catch(next);
 
