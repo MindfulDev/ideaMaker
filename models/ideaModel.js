@@ -6,7 +6,7 @@ var schemaOptions = {
 
 var schema = new mongoose.Schema({
     title: { type: String, required: true},
-    details: [String]
+    detail: String
 }, schemaOptions);
 
 module.exports = mongoose.model("idea", schema);

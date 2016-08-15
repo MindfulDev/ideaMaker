@@ -19,6 +19,10 @@ This is a nodejs project to manipulate ideas.
   * look at mongoose to create an idea schema
 
 ## Recent Changes
+  * added basic Web CRUD interface
+  * Made add, edit and list screens use model schema in Web CRUD interface.
+  * added ability to use search term as in api/ideas/?s=test
+  * Changed to Mongoose driver
   * 0.1.0
   * added Mongodb connection - currently using nodejs native driver
   * created beginning api router get request on \api\ideas produces json list

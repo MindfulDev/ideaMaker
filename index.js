@@ -14,22 +14,22 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 
 /* add route modules here */
+app.use("/api", require("./routes/api"));       // API CRUD using JSON I/O
+app.use("/idea", require("./routes/idea"));     // web CRUD
+app.use("/", require("./routes/main"));
 
-app.use("/api", require("./routes/api"));
 
-/* basic route */
-app.get('/', (q,r) => {
-    r.render('index.pug', {pageTitle: 'ideaMaker'});
-});
-
+/* start your engine */
 app.listen(3000, () => {
     console.log('Listening on 3000');
 });
-
+/*
+//Took this out because node process had to be killed manually frequently
+//TODO look at creating a graceful close
 process.on('SIGINT', function() {
-   console.log("SIGINT");
+    console.log("SIGINT");
     require('./data/ideaDb').close( () => {
         process.exit(0);
     });
 
-});
+});*/

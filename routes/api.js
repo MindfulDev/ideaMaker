@@ -8,13 +8,17 @@ router.route("/ideas")
 
     .get(function (req, res, next) {
     
-        ideaDb.Idea.find().exec()
-            .then(rooms => res.json(rooms))
-            .catch(next);
-
-    })
-    .post(function (req, res, next){
+        var search = req.query.s;
         
-        next();
-        
+        if (!search) {
+             ideaDb.Idea.find().exec()
+                .then(ideas => res.json(ideas))
+                .catch(next);
+            } else {
+                var searchRegEx = new RegExp(search);
+                ideaDb.Idea.find({detail: searchRegEx}).or([{title: searchRegEx}]).exec()
+                    .then(ideas => res.json(ideas))
+                    .catch(next);
+            }
     });
+
