@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+console.log(process.env.dbusername);
+
 /* configure express to use bodyparser to get data by POST */
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
