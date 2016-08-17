@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-console.log(process.env.dbusername);
 
 /* configure express to use bodyparser to get data by POST */
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,9 +20,12 @@ app.use("/idea", require("./routes/idea"));     // web CRUD
 app.use("/", require("./routes/main"));
 
 
+var port = process.env.PORT || 8080;
+console.log(port);
+
 /* start your engine */
-app.listen(3000, () => {
-    console.log('Listening on 3000');
+app.listen(port, () => {
+    console.log('Listening on ' + port);
 });
 /*
 //Took this out because node process had to be killed manually frequently
