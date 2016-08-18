@@ -23,5 +23,8 @@
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.8",
     "pug": "^2.0.0-beta4"
+  },
+  "devDependencies": {
+    "dotenv": "^2.0.0"
   }
 }
